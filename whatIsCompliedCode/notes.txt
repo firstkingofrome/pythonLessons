@@ -1,0 +1,7 @@
+1. Explain basic disctinction between compiled and interpreted computer programs
+
+2. Show simple C program and corresponding 
+
+3.
+
+4.

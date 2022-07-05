@@ -1,39 +1,28 @@
-	.file	"whatIsCompile.c"
-	.section	.rodata
-.LC0:
-	.string	"print this variable %c"
-	.text
-	.globl	main
-	.type	main, @function
-main:
-.LFB0:
+	.section	__TEXT,__text,regular,pure_instructions
+	.build_version macos, 11, 0	sdk_version 12, 1
+	.globl	_main                           ; -- Begin function main
+	.p2align	2
+_main:                                  ; @main
 	.cfi_startproc
-	pushq	%rbp
+; %bb.0:
+	sub	sp, sp, #16                     ; =16
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
-	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	subq	$16, %rsp
-	movl	$3, -8(%rbp)
-	movl	$4, -4(%rbp)
-	movl	-8(%rbp), %eax
-	imull	-4(%rbp), %eax
-	imull	-8(%rbp), %eax
-	movl	-4(%rbp), %edx
-	imull	%edx, %eax
-	movl	%eax, -4(%rbp)
-	movb	$97, -9(%rbp)
-	movsbl	-9(%rbp), %eax
-	movl	%eax, %esi
-	movl	$.LC0, %edi
-	movl	$0, %eax
-	call	printf
-	movl	$0, %eax
-	leave
-	.cfi_def_cfa 7, 8
+	mov	w0, #0
+	str	wzr, [sp, #12]
+	mov	w8, #3
+	str	w8, [sp, #8]
+	mov	w8, #4
+	str	w8, [sp, #4]
+	ldr	w8, [sp, #8]
+	ldr	w9, [sp, #4]
+	mul	w8, w8, w9
+	ldr	w9, [sp, #8]
+	mul	w8, w8, w9
+	ldr	w9, [sp, #4]
+	mul	w8, w8, w9
+	str	w8, [sp, #4]
+	add	sp, sp, #16                     ; =16
 	ret
 	.cfi_endproc
-.LFE0:
-	.size	main, .-main
-	.ident	"GCC: (Ubuntu 4.8.4-2ubuntu1~14.04.4) 4.8.4"
-	.section	.note.GNU-stack,"",@progbits
+                                        ; -- End function
+.subsections_via_symbols
