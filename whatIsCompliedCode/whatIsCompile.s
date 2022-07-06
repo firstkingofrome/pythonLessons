@@ -1,28 +1,38 @@
 	.section	__TEXT,__text,regular,pure_instructions
-	.build_version macos, 11, 0	sdk_version 12, 1
-	.globl	_main                           ; -- Begin function main
-	.p2align	2
-_main:                                  ; @main
+	.build_version macos, 11, 0	sdk_version 11, 3
+	.globl	_main                           ## -- Begin function main
+	.p2align	4, 0x90
+_main:                                  ## @main
 	.cfi_startproc
-; %bb.0:
-	sub	sp, sp, #16                     ; =16
+## %bb.0:
+	pushq	%rbp
 	.cfi_def_cfa_offset 16
-	mov	w0, #0
-	str	wzr, [sp, #12]
-	mov	w8, #3
-	str	w8, [sp, #8]
-	mov	w8, #4
-	str	w8, [sp, #4]
-	ldr	w8, [sp, #8]
-	ldr	w9, [sp, #4]
-	mul	w8, w8, w9
-	ldr	w9, [sp, #8]
-	mul	w8, w8, w9
-	ldr	w9, [sp, #4]
-	mul	w8, w8, w9
-	str	w8, [sp, #4]
-	add	sp, sp, #16                     ; =16
-	ret
+	.cfi_offset %rbp, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movl	$0, -4(%rbp)
+	movl	$3, -8(%rbp)
+	movl	$4, -12(%rbp)
+	movl	-8(%rbp), %eax
+	imull	-12(%rbp), %eax
+	imull	-8(%rbp), %eax
+	imull	-12(%rbp), %eax
+	movl	%eax, -12(%rbp)
+	movl	-12(%rbp), %esi
+	leaq	L_.str(%rip), %rdi
+	movb	$0, %al
+	callq	_printf
+	xorl	%ecx, %ecx
+	movl	%eax, -16(%rbp)                 ## 4-byte Spill
+	movl	%ecx, %eax
+	addq	$16, %rsp
+	popq	%rbp
+	retq
 	.cfi_endproc
-                                        ; -- End function
+                                        ## -- End function
+	.section	__TEXT,__cstring,cstring_literals
+L_.str:                                 ## @.str
+	.asciz	"y=%i\n"
+
 .subsections_via_symbols
