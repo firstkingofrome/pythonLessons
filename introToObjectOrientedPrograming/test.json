@@ -1,0 +1,48 @@
+{
+    "Anthony": {
+        "age": 6,
+        "assignments": {
+            "hwk1": 0.91,
+            "hwk2": 0.55,
+            "quiz1": 0.99
+        },
+        "studentid": 43567
+    },
+    "Hannah": {
+        "age": 24,
+        "assignments": {
+            "hwk1": 0.81,
+            "hwk2": 0.75,
+            "quiz1": 0.99
+        },
+        "studentid": 88214
+    },
+    "cece": {
+        "age": 27,
+        "assignments": {
+            "hwk1": 0.94,
+            "hwk2": 0.83,
+            "quiz1": 0.77
+        },
+        "studentid": 54321
+    },
+    "eric": {
+        "age": 27,
+        "assignments": {
+            "hwk1": 0.94,
+            "hwk2": 0.83,
+            "quiz1": 0.77,
+            "test1": 0.7
+        },
+        "studentid": 12345
+    },
+    "luis": {
+        "age": 27,
+        "assignments": {
+            "hwk1": 0.94,
+            "hwk2": 0.83,
+            "quiz1": 0.77
+        },
+        "studentid": 123123
+    }
+}
